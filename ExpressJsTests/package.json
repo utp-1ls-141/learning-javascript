@@ -1,0 +1,21 @@
+{
+  "name": "expressjstests",
+  "version": "1.0.0",
+  "description": "Pruebas de Express.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mongo",
+    "html",
+    "css"
+  ],
+  "author": "Erick Agrazal",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
