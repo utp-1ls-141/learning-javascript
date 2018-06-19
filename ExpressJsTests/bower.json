@@ -1,0 +1,28 @@
+{
+  "name": "expressjstests",
+  "description": "Pruebas de Express.js",
+  "main": "index.js",
+  "authors": [
+    "Erick Agrazal"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "express",
+    "mongo",
+    "html",
+    "css"
+  ],
+  "homepage": "https://github.com/utp-1ls-141/learning-javascript",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "jquery": "^3.3.1"
+  }
+}
