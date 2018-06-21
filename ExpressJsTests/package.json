@@ -4,6 +4,8 @@
   "description": "Pruebas de Express.js",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon",
+    "prod": "",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

@@ -6,6 +6,10 @@ const path = require('path');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// Middleware
+app.use(express.static(path.join(__dirname, 'bower_components')))
+app.use(express.static(path.join(__dirname, 'public')))
+
 // Routes
 app.get('/', function(req, res){
 	res.render('index');
