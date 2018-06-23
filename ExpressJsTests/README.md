@@ -8,13 +8,13 @@ Este es un proyecto base que tiene como objetivo mostrar express js como platafo
 Para ejecutar el proyecto, se necesita instalar las siguientes dependencias.
 
 #### Instalar Node:
-- Windows / Mac / Linux:
+Windows / Mac / Linux:
 `https://nodejs.org/en/download/`
 
-- Mac (Homebrew):
+Mac (Homebrew):
 `brew install node`
 
-- Debian / Ubuntu y otros (Terminal):
+Debian / Ubuntu y otros (Terminal):
 ```bash
 sudo apt-get install -y build-essential
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
@@ -22,27 +22,27 @@ sudo apt-get install -y nodejs
 ```
 
 #### Instalar Express:
-- Windows / Mac / Linux 
+Windows / Mac / Linux 
 `npm install -g express`
 
 #### Instalar MongoDB:
-- Descargar el adecuado para su sistema operativo:
+Descargar el adecuado para su sistema operativo:
 `https://www.mongodb.com/download-center?#community`
 
 *Para Windows 10:* Al instalarlo, deshabilitar la instalación del "Compass", ya que han habido algunos problemas con él.
 
-- Windows:
+Windows:
 `https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows`
 
-- Mac:
+Mac:
 `https://treehouse.github.io/installation-guides/mac/mongo-mac.html`
 
-- Ubuntu / Debian:
+Ubuntu / Debian:
 `https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu`
 
 #### Instalar nodemon (Opcional)
 `npm install -g nodemon`
 
 ### Ejecución
-- Para ejecutar el proyecto, solo hay que ejecutar el siguiente comando:
+Para ejecutar el proyecto, solo hay que ejecutar el siguiente comando:
 `npm run dev`
