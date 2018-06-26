@@ -1,6 +1,16 @@
-var express = require('express');
-var app = express();
+let express = require('express');
+let app = express();
 const path = require('path');
+
+let mongoose = require('mongoose');
+
+// Mongoose Connection
+mongoose.connect('mongodb://localhost/semestral');
+let db = mongoose.connection;
+db.on('error', console.error.bind(console, 'Error de conexión: '))
+db.once('open', () => {
+	console.log('Conectado a la Base de Datos.');
+});
 
 // Setting View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -11,15 +21,13 @@ app.use(express.static(path.join(__dirname, 'bower_components')))
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Routes
-app.get('/', function(req, res){
-	res.render('index');
-});
-
-app.get('/greet/:name', function(req, res){
-	res.render('greetAPerson', {
-		name: req.params.name,
-	});
-});
+let routes = require('./routes/router');
+app.use('/', routes);
+app.use(function(req, res, next){
+	let error = new Error('Archivo no encontrado');
+	error.status = 404;
+	next(error);
+})
 
 // Open listening port
 // Set PORT:
