@@ -1,27 +1,27 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-var UserSchema = new mongoose.Schema({
+let UserSchema = new mongoose.Schema({
     email: {
         type: String,
         unique: true,
         required: true,
-        trim: true
+        trim: true,
     },
     username: {
         type: String,
         unique: true,
         required: true,
-        trim: true
+        trim: true,
     },
     password: {
         type: String,
-        unique: true,
+        required: true,
     },
     passwordConf: {
         type: String,
-        unique: true,
-    }
+        required: true,
+    },
 });
 
-var User = mongoose.model('User', UserSchema);
+let User = mongoose.model('User', UserSchema);
 module.exports = User;
