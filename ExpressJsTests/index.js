@@ -6,7 +6,6 @@ const path = require('path');
 
 // Connect to mongo
 var UserModel = require('./models/users');
-console.log(UserModel);
 mongoose.connect('mongodb://localhost/semestral');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection error: '));
