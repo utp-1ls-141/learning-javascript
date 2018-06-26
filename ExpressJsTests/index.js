@@ -1,6 +1,16 @@
+var mongoose = require('mongoose');
+
 var express = require('express');
 var app = express();
 const path = require('path');
+
+// Connect to mongo
+var UserModel = require('./models/users');
+console.log(UserModel);
+mongoose.connect('mongodb://localhost/semestral');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'Connection error: '));
+db.once('open', function(){ console.log('Connected to database.') });
 
 // Setting View Engine
 app.set('views', path.join(__dirname, 'views'));
