@@ -1,6 +1,9 @@
 let express = require('express');
 let app = express();
-const path = require('path');
+let bodyParser = require('body-parser');
+let session = require('express-session'); 
+let path = require('path');
+let MongoStore = require('connect-mongo')(session);
 
 //Mongoose Connection 
 let mongoose = require('mongoose');
@@ -12,6 +15,7 @@ db.once('open',() => {
 	console.log('Connected to Mongo Database');
 });
 
+
 // Setting View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -19,15 +23,25 @@ app.set('view engine', 'pug');
 // Middleware
 app.use(express.static(path.join(__dirname, 'bower_components')))
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({
+	secret: 'work hard',
+	resave: true,
+	saveUninitialized: false,
+	store: new MongoStore({
+		mongooseConnection: db
+	})
+  }));
 
 // Routes
-let routes = require(path.join(__dirname,'/routes/router'));
+let routes = require('./routes/router');
 app.use('/',routes);
-app.use(function(req,res,next){
-	let err = new Error('Archivo no encontrado PERRON');
+/* app.use(function(req,res,next){
+	let err = new Error('Archivo no encontrado');
 	err.status=404;
 	next(err);
-});
+}); */
 
 // Open listening port
 // Set PORT:

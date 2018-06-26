@@ -4,11 +4,13 @@
 
 db.createUser({user:'Nicole',pwd:'nickyeslobest',roles:[{role:'readWrite',db:'aprendiendo'}]});
 //db.auth('Nicole','nickyeslobest');   [por si algun dia necesitamos usar Authetication]
-db.createCollection('estudiantes');
-db.estudiantes.insertOne({
-    nombre:'Maureth',
-    edad:20,
-    hobbies:['cantar','bailar','dormir']
+// NO CREAR ESTE USUARIO MAS DE 1 VEZ
+db.createCollection('users');
+db.users.insertOne({
+    email:'manfer1804@gmail.com',
+    username:'manuelf',
+    password:'2c90685654aa42f61d086fb56e8fd3cd',
+    passConfirm:'2c90685654aa42f61d086fb56e8fd3cd'
 });
 // Para hacer un query a la bd y probar que funciona pueden hacer
 // db.estudiantes.find({}).pretty()
