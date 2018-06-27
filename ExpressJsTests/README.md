@@ -56,3 +56,11 @@ Descargar el adecuado para su sistema operativo:
 Para ejecutar el proyecto, solo hay que ejecutar el siguiente comando:
 
 `npm run dev`
+
+
+### Prueba login (Manuel)
+
+1. Para probar el login se debe crear una db en mongo qe se llame aprendiendo
+2. ejecutar las demas funciones que se encuentran en mongoscript.js (si ya creo el usuario no vuelva a hacerlo)
+3. loggiar con username: manfer1804@gmail.com password: holis
+4. profit $$$$$

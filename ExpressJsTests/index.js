@@ -1,6 +1,20 @@
 let express = require('express');
 let app = express();
-const path = require('path');
+let bodyParser = require('body-parser');
+let session = require('express-session'); 
+let path = require('path');
+let MongoStore = require('connect-mongo')(session);
+
+//Mongoose Connection 
+let mongoose = require('mongoose');
+mongoose.connect('mongodb://Nicole:nickyeslobest@localhost/aprendiendo?authDatabase=aprendiendo');
+let db = mongoose.connection;
+
+db.on('error',console.error.bind(console,'Error de Conexion: '));
+db.once('open',() => {
+	console.log('Connected to Mongo Database');
+});
+
 
 let mongoose = require('mongoose');
 
@@ -19,15 +33,25 @@ app.set('view engine', 'pug');
 // Middleware
 app.use(express.static(path.join(__dirname, 'bower_components')))
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({
+	secret: 'work hard',
+	resave: true,
+	saveUninitialized: false,
+	store: new MongoStore({
+		mongooseConnection: db
+	})
+  }));
 
 // Routes
 let routes = require('./routes/router');
-app.use('/', routes);
-app.use(function(req, res, next){
-	let error = new Error('Archivo no encontrado');
-	error.status = 404;
-	next(error);
-})
+app.use('/',routes);
+/* app.use(function(req,res,next){
+	let err = new Error('Archivo no encontrado');
+	err.status=404;
+	next(err);
+}); */
 
 // Open listening port
 // Set PORT:

@@ -1,15 +1,15 @@
 extends base
 
 block contenido
-  form.row(style='margin-top:20%;')
+  form.row(method='post' style='margin-top:20%;')
     .col-md-11.offset-md-1
       .form-group.row
-        label.col-sm-3.col-form-label(for="user") Usuario:
+        label.col-sm-3.col-form-label(for="email") Usuario:
         .col-md-8
-          input.form-control#user(type='text')
+          input.form-control#username(type='email', name='email')
       .form-group.row
-        label.col-sm-3.col-form-label(for="pass") Contraseña:
+        label.col-sm-3.col-form-label(for="password") Contraseña:
         .col-md-8
-          input.form-control#pass(type='password')
+          input.form-control#password(type='password',name='password')
       .form-group.row
-        button.btn.btn-primary Conectarme
+        input(type='submit').btn.btn-primary 
