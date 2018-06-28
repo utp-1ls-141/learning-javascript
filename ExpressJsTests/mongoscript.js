@@ -1,3 +1,4 @@
+"use strict";
 // IMPORTANTE crear la base de datos con: use nombredelabd
 // si no crean la base de datos como primer paso la coleccion se creara en test que es la db por defecto de mongo
 // en mi caso usare:  'use aprendiendo'
