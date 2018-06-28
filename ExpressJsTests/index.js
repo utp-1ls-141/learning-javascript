@@ -16,9 +16,6 @@ db.once('open',() => {
 	console.log('Connected to Mongo Database');
 });
 
-
-let mongoose = require('mongoose');
-
 // Mongoose Connection
 mongoose.connect('mongodb://localhost/semestral');
 let db = mongoose.connection;
