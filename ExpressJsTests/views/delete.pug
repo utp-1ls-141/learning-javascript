@@ -1,0 +1,13 @@
+extends base
+
+block contenido
+    .container.mt-5
+        .row
+            .col-sm-11.offset-sm-1
+                h2 Borrar estudiante
+                .form-group.row
+                    label.col-sm-3.col-form-label(for="ced") Cedula del estudiante:
+                    .col-md-8
+                    input.form-control#cedula(type='text', name='cedula', placeholder='Escriba la cedula del estudiante')
+                .form-group.row
+                    input(type='submit',value='Borrar').btn.btn-primary

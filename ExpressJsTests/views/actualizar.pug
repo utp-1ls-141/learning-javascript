@@ -1,0 +1,38 @@
+extends base
+
+block contenido
+    .container
+        form.form-signin.border.rounded
+            .row
+                .col-sm-11.offset-sm-1
+                    .text-center.mb-5
+                        h1.h3.mb-3.font-weight-normal Actualizar Estudiante
+                    .form-label-group
+                        label(for='inputNom') Nombre
+                        input#inputNom.form-control(type='text', name="nombre", required='', autofocus='', placeholder='Escriba el nombre del estudiante')
+                    .form-label-group
+                        label(for='inputApl') Apellido
+                        input#inputApl.form-control(type='text', name="apellido", required='', autofocus='', placeholder='Escriba el apellido del estudiante')
+                        
+                    .form-label-group
+                        label(for='inputEdd') Edad
+                        input#inputEdd.form-control(type='number', name="edad", required='', autofocus='', placeholder='Escriba la edad del estudiante')
+                        
+                    .form-label-group
+                        label(for='inputEmail') Correo
+                        input#inputEmail.form-control(type='email', name="correo", required='', autofocus='', placeholder='Escriba el correo del estudiante')
+                        
+                    .form-label-group
+                        label(for='inputCar') Carrera
+                        input#inputCar.form-control(type='text', name="carrera", required='', autofocus='', placeholder='Escriba la carrera del estudiante')
+                        
+                    .form-label-group.mt-3
+                        label(for='inputSexo') Sexo
+                            select#inputSexo(name="sexo", class='ml-3')
+                                option(value="f") Femenino
+                                option(value="m") Masculino
+                                option(value="x") Prefiero no decirlo
+                    .form-label-group
+                        label(for='inputInd') Índice
+                        input#inputInd.form-control(type='number', name="indice", required='', autofocus='', placeholder='Escriba el indice del estudiiante')    
+                    button.btn.btn-lg.btn-primary.btn-block.mt-4(type='submit') Actualizar estudiante
