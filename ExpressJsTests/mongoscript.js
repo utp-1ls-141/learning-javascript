@@ -9,8 +9,8 @@ db.createCollection('users');
 db.users.insertOne({
     email:'manfer1804@gmail.com',
     username:'manuelf',
-    password:'2c90685654aa42f61d086fb56e8fd3cd',
-    passConfirm:'2c90685654aa42f61d086fb56e8fd3cd'
+    password:'$2a$10$mriWdK7P3Uitat6SR4LkNekr1RbaCYw79hU9CfUAtqGNiWLR6uUDe', //holis
+    passConfirm:'$2a$10$mriWdK7P3Uitat6SR4LkNekr1RbaCYw79hU9CfUAtqGNiWLR6uUDe' //holis hash
 });
 // Para hacer un query a la bd y probar que funciona pueden hacer
 // db.estudiantes.find({}).pretty()
