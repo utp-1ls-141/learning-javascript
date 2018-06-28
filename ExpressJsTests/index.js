@@ -18,7 +18,6 @@ db.once('open',() => {
 
 // Mongoose Connection
 mongoose.connect('mongodb://localhost/semestral');
-let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Error de conexión: '))
 db.once('open', () => {
 	console.log('Conectado a la Base de Datos.');
