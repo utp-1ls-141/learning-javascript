@@ -2,7 +2,7 @@ let express = require('express');
 let router = express.Router();
 let user = require('../models/user');
 let estudiante = requiere('../models/estudiante')
-let md5 = require('md5');
+let bcrypt = require('bcrypt');
 let datos;
 
 //LOGIN
@@ -10,7 +10,19 @@ router.get('/', function(req, res){
 	res.render('index');
 });
 router.post('/', function(req, res, next){
-	var cont = md5(req.body.password+'');
+	var cont;
+	bcrypt.hash(req.body.password+'', 10, function(err, hash) {
+		cont = hash;
+	});
+	/* Si desearamos el proceso inverso
+	    bcrypt.compare('somePassword', hash, function(err, res) {
+      		if(res) {
+       			// Passwords coinciden
+      		} else {
+       			// Passwords no coinciden
+      		} 
+    	});
+	*/
 	user.authenticate(req.body.email, cont, function(error,user){
 		if(error || !user)
 		return next(error);
