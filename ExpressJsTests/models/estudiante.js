@@ -14,6 +14,22 @@ const mongoose = require('mongoose');
     indice: { type: String, unique: false, required: true, trim: true },
 },{collection:'estudiantes'});
 
+estudianteSchema.statics.find = function(cedula,callback){
+    Estudiante.findOne({cedula:cedula},'cedula',function(err,users){
+        if(err){
+            console.log(err);
+        }
+        else if(!users){
+            var err = new Error('No existe la cedula');
+            err.status = 401;
+            return callback(err);
+        }
+        else{
+            console.log(users);
+            return callback(null,users);
+        }
+    })   
+}
 
 
 estudianteSchema.statics.insert = function(nombre,apellido,edad,cedula,correo,carrera,year,direccion,sexo,indice,callback){
