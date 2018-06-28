@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 let user = require('../models/user');
-let estudiante = requiere('../models/estudiante')
+let estudiante = require('../models/estudiante')
 let bcrypt = require('bcrypt');
 let datos;
 
