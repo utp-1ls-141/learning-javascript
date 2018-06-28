@@ -31,6 +31,10 @@ estudianteSchema.statics.find = function(cedula,callback){
     })   
 }
 
+estudianteSchema.statics.findAll = function(){
+    Estudiante.find({});  
+}
+
 
 estudianteSchema.statics.insert = function(nombre,apellido,edad,cedula,correo,carrera,year,direccion,sexo,indice,callback){
     Estudiante.findOne({cedula:cedula},'cedula',function(err,msg){
