@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 let user = require('../models/user');
-let estudiante = requiere('../models/estudiante')
+let estudiante = require('../models/estudiante')
 let md5 = require('md5');
 let datos;
 
@@ -24,7 +24,7 @@ router.get('/profile',function(req,res,next){
 	if(!req.session.username){
 		res.send('denegado');
 	}
-	estudiante.read(function(error,msg,coll){
+/* 	estudiante.read(function(error,msg,coll){
 		if(error)
 		return next(error);
 		else if(msg){
@@ -32,8 +32,8 @@ router.get('/profile',function(req,res,next){
 		else{
 		datos=coll;
 		}
-	  });
-	res.render('profile',{message:req.session.username,models:datos});
+	  }); */
+	res.render('profile',{message:req.session.username,modelo:[{nombre:'manuel'}]});
 });
 
 //INSERTAR

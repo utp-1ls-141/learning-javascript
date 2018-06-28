@@ -15,17 +15,6 @@ db.once('open',() => {
 	console.log('Connected to Mongo Database');
 });
 
-
-let mongoose = require('mongoose');
-
-// Mongoose Connection
-mongoose.connect('mongodb://localhost/semestral');
-let db = mongoose.connection;
-db.on('error', console.error.bind(console, 'Error de conexión: '))
-db.once('open', () => {
-	console.log('Conectado a la Base de Datos.');
-});
-
 // Setting View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

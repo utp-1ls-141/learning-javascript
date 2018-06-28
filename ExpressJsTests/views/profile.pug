@@ -13,7 +13,7 @@ block contenido
         .row
             .col-sm-12
                 form(action="/", method="post")
-                        //-var lista = 3; 
+                    //-var lista = 3; 
                     table.table
                         thead.thead-dark
                             tr 
@@ -30,18 +30,18 @@ block contenido
                                 th Borrar
             
                             tr 
-                            each modelo in lista
-                                td #{modelo.nombre}
-                                td #{modelo.apellido}
-                                td #{modelo.edad}
-                                td #{modelo.cedula}
-                                td #{modelo.correo}
-                                td #{modelo.ann}
-                                td #{modelo.direccion}
-                                td #{modelo.sexo}
-                                td #{modelo.indice}
-                                td
-                                    input(type='submit',value='Actualizar').btn.btn-success
-                                td
-                                    input(type='submit',value='Borrar').btn.btn-danger
+                                each lista in modelo 
+                                    td #{lista.nombre}
+                                    td #{lista.apellido}
+                                    td #{lista.edad}
+                                    td #{lista.cedula}
+                                    td #{lista.correo}
+                                    td #{lista.ann}
+                                    td #{lista.direccion}
+                                    td #{lista.sexo}
+                                    td #{lista.indice}
+                                    td
+                                        input(type='submit',value='Actualizar').btn.btn-success
+                                    td
+                                        input(type='submit',value='Borrar').btn.btn-danger
             
