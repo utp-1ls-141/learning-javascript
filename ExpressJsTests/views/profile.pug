@@ -1,4 +1,47 @@
 extends base
 
 block contenido
-    h1 hola #{message}
+    .container
+        .row
+            .col-sm-12
+                 h3 Bienvenido, #{usuario} !
+        .row
+            .col-sm-7
+                h2 Lista de los estudiantes registrados 
+            .col-sm-5
+                button.btn.btn-primary.w-100 Insertar nuevo estudiante
+        .row
+            .col-sm-12
+                form(action="/", method="post")
+                        //-var lista = 3; 
+                    table.table
+                        thead.thead-dark
+                            tr 
+                                th Nombre 
+                                th Apellido 
+                                th Edad 
+                                th Cedula 
+                                th Correo 
+                                th Año 
+                                th Direccion
+                                th Sexo
+                                th Indice 
+                                th Actualizar 
+                                th Borrar
+            
+                            tr 
+                            each modelo in lista
+                                td #{modelo.nombre}
+                                td #{modelo.apellido}
+                                td #{modelo.edad}
+                                td #{modelo.cedula}
+                                td #{modelo.correo}
+                                td #{modelo.ann}
+                                td #{modelo.direccion}
+                                td #{modelo.sexo}
+                                td #{modelo.indice}
+                                td
+                                    input(type='submit',value='Actualizar').btn.btn-success
+                                td
+                                    input(type='submit',value='Borrar').btn.btn-danger
+            
