@@ -11,7 +11,8 @@ router.get('/', function(req, res){
 	res.render('index');
 });
 router.post('/', function(req, res, next){
-	var cont= bcrypt.hashSync(req.body.password+'', 10);
+	var cont = req.body.password+'';
+	//var cont= bcrypt.hashSync(req.body.password+'', 10);
 	console.log(cont);
 	
 	user.authenticate(req.body.email, cont, function(error,user){

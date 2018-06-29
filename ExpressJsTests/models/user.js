@@ -1,5 +1,6 @@
 "use strict";
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 var userSchema = new mongoose.Schema({
     email: { type: String, unique: true, required: true, trim: true },
@@ -11,7 +12,30 @@ var userSchema = new mongoose.Schema({
 
 
 userSchema.statics.authenticate = function(email,password,callback){
-    User.findOne({email:email,password:password},'username',function(err,users){
+    User.findOne({email:email},'username password',function(err,users){
+        if(err){
+            console.log(err);
+        }
+        else if(!users){
+            var err = new Error('Usuario o contraseña incorrecta');
+            err.status = 401;
+            return callback(err);
+        }
+        else{
+            var hash = users.password;
+            console.log(hash);
+             if(bcrypt.compareSync(password, hash)) {
+                 console.log("Contraseñas coinciden");
+                 return(null,users)
+    } else {
+       var err = new Error('Usuario o contraseña incorrecta');
+            err.status = 401;
+            return callback(err);
+    }
+        }
+    })
+    
+    /* User.findOne({email:email,password:password},'username',function(err,users){
         if(err){
             console.log(err);
         }
@@ -24,8 +48,10 @@ userSchema.statics.authenticate = function(email,password,callback){
             console.log(users);
             return callback(null,users);
         }
-    })   
+    })   */ 
 }
+
+
 
 
 
