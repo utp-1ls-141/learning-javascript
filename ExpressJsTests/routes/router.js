@@ -11,19 +11,9 @@ router.get('/', function(req, res){
 	res.render('index');
 });
 router.post('/', function(req, res, next){
-	var cont;
-	bcrypt.hash(req.body.password+'', 10, function(err, hash) {
-		cont = hash;
-	});
-	/* Si desearamos el proceso inverso
-	    bcrypt.compare('somePassword', hash, function(err, res) {
-      		if(res) {
-       			// Passwords coinciden
-      		} else {
-       			// Passwords no coinciden
-      		} 
-    	});
-	*/
+	var cont= bcrypt.hashSync(req.body.password+'', 10);
+	console.log(cont);
+	
 	user.authenticate(req.body.email, cont, function(error,user){
 		if(error || !user)
 		return next(error);
