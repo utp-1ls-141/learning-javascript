@@ -1,5 +1,6 @@
 "use strict";
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 var userSchema = new mongoose.Schema({
     email: { type: String, unique: true, required: true, trim: true },
@@ -11,7 +12,19 @@ var userSchema = new mongoose.Schema({
 
 
 userSchema.statics.authenticate = function(email,password,callback){
-    User.findOne({email:email,password:password},'username',function(err,users){
+    User.findOne({email:email},'username password',function(err,user){
+        if(err)
+            return callback(err);
+        else if(!user)
+            return callback();
+        var hash = user.password;
+        if(bcrypt.compareSync(password, hash))
+            return callback(null,user)
+        else
+            return callback();
+    })
+    
+    /* User.findOne({email:email,password:password},'username',function(err,users){
         if(err){
             console.log(err);
         }
@@ -24,8 +37,10 @@ userSchema.statics.authenticate = function(email,password,callback){
             console.log(users);
             return callback(null,users);
         }
-    })   
+    })   */ 
 }
+
+
 
 
 
