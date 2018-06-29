@@ -3,7 +3,7 @@ let express = require('express');
 let router = express.Router();
 let user = require('../models/user');
 let estudiante = require('../models/estudiante')
-let bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 let datos;
 
 //LOGIN
