@@ -12,27 +12,16 @@ var userSchema = new mongoose.Schema({
 
 
 userSchema.statics.authenticate = function(email,password,callback){
-    User.findOne({email:email},'username password',function(err,users){
-        if(err){
-            console.log(err);
-        }
-        else if(!users){
-            var err = new Error('Usuario o contraseña incorrecta');
-            err.status = 401;
+    User.findOne({email:email},'username password',function(err,user){
+        if(err)
             return callback(err);
-        }
-        else{
-            var hash = users.password;
-            console.log(hash);
-             if(bcrypt.compareSync(password, hash)) {
-                 console.log("Contraseñas coinciden");
-                 return(null,users)
-    } else {
-       var err = new Error('Usuario o contraseña incorrecta');
-            err.status = 401;
-            return callback(err);
-    }
-        }
+        else if(!user)
+            return callback();
+        var hash = user.password;
+        if(bcrypt.compareSync(password, hash))
+            return callback(null,user)
+        else
+            return callback();
     })
     
     /* User.findOne({email:email,password:password},'username',function(err,users){

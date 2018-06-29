@@ -14,14 +14,19 @@ router.post('/', function(req, res, next){
 	var cont = req.body.password+'';
 	//var cont= bcrypt.hashSync(req.body.password+'', 10);
 	console.log(cont);
-	
 	user.authenticate(req.body.email, cont, function(error,user){
-		if(error || !user)
-		return next(error);
+		console.log(user);
+		if(error){
+			next(error);
+		}
+		else if(!user){
+			var err = new Error('Usuario o contraseña incorrecta');
+            err.status = 401;
+			next(err);}
 		else{
-		req.session.username=user.username;
-		res.redirect('/profile');}
-	  });
+			req.session.username=user.username;
+			res.send('success');}
+	});
 });
 
 router.get('/profile',function(req,res,next){
