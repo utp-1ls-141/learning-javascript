@@ -8,40 +8,70 @@ block contenido
         .row
             .col-sm-7
                 h2 Lista de los estudiantes registrados 
-            .col-sm-5
-                button.btn.btn-primary.w-100 Insertar nuevo estudiante
         .row
             .col-sm-12
-                form(action="/", method="post")
-                    //-var lista = 3; 
-                    table.table
-                        thead.thead-dark
-                            tr 
-                                th Nombre 
-                                th Apellido 
-                                th Edad 
-                                th Cedula 
-                                th Correo 
-                                th Año 
-                                th Direccion
-                                th Sexo
-                                th Indice 
-                                th Actualizar 
-                                th Borrar
-            
-                            tr 
-                                each lista in modelo 
+                 table.table.table-bordered
+                    thead.thead-dark
+                        tr 
+                            th Nombre 
+                            th Apellido 
+                            th Edad 
+                            th Cedula 
+                            th Correo
+                            th Carrera
+                            th Año 
+                            th Direccion
+                            th Sexo
+                            th Indice 
+                            th
+                            th 
+        
+                        tr 
+                            each lista in modelo
+                                form(action='/actualizar' method='POST')  
                                     td #{lista.nombre}
                                     td #{lista.apellido}
                                     td #{lista.edad}
                                     td #{lista.cedula}
                                     td #{lista.correo}
-                                    td #{lista.ann}
+                                    td #{lista.carrera}
+                                    td #{lista.year}
                                     td #{lista.direccion}
                                     td #{lista.sexo}
                                     td #{lista.indice}
-                                    td
+                                    td 
                                         input(type='submit',value='Actualizar').btn.btn-success
+                                form(action='/eliminar', method='POST')
+                                    input(type='hidden', value=lista.cedula, name='cedula')
                                     td
                                         input(type='submit',value='Borrar').btn.btn-danger
+                        tr 
+                            form(method='POST', action='/insertar')
+                                td
+                                    input#nombre(type='text' name='nombre')
+                                td
+                                    input#apellido(type='text' name='apellido') 
+                                td
+                                    input#edad(type='number' name='edad')
+                                td
+                                    input#cedula(type='text' name='cedula')
+                                td
+                                    input#correo(type='email' name='correo')
+                                td
+                                    input#carrera(type='text' name='carrera')
+                                td
+                                    input#year(type='number' name='year')       
+                                td
+                                    textarea#direccion(name="direccion", cols="30", rows="10")
+                                td
+                                    select#sexo(name="sexo")
+                                        option(value="hombre") Hombre
+                                        option(value="mujer") Mujer
+                                        option(value="NI") No identificado
+                                td
+                                    input#indice(type='number' name='indice')
+                                td(colspan='2' style='text-align:center')
+                                    input.btn.btn-primary(type='submit' value='Insertar') 
+                                
+                                    
             

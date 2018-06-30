@@ -3,55 +3,51 @@ let express = require('express');
 let router = express.Router();
 let user = require('../models/user');
 let estudiante = require('../models/estudiante')
-const bcrypt = require('bcrypt');
-let datos;
 
 //LOGIN
 router.get('/', function(req, res){
 	res.render('index');
 });
+
 router.post('/', function(req, res, next){
-	var cont = req.body.password+'';
-	//var cont= bcrypt.hashSync(req.body.password+'', 10);
-	console.log(cont);
-	user.authenticate(req.body.email, cont, function(error,user){
-		console.log(user);
-		if(error){
+	user.authenticate(req.body.email, req.body.password, function(error,user){
+		if(error)
 			next(error);
-		}
-		else if(!user){
+		else if(!user) {
 			var err = new Error('Usuario o contraseña incorrecta');
             err.status = 401;
-			next(err);}
+			next(err); }
 		else{
-			req.session.username=user.username;
-			res.send('success');}
+			req.session.username = user.username;
+			res.redirect('/profile');  }
 	});
 });
 
-router.get('/profile',function(req,res,next){
+router.get('/profile',function(req, res, next){
 	if(!req.session.username){
-		res.send('denegado');
+		res.redirect('/');
 	}
-/* 	estudiante.read(function(error,msg,coll){
+	estudiante.findAll(function(error,users){
 		if(error)
-		return next(error);
-		else if(msg){
-		res.send(msg)}
-		else{
-		datos=coll;
-		}
-	  }); */
-	res.render('profile',{message:req.session.username,modelo:[{nombre:'manuel'}]});
+			next(error);
+		else if(!users)
+			users = [];
+		else
+			res.render('profile',{usuario:req.session.username, modelo:users});
+	}); 
 });
 
 //INSERTAR
 router.post('/insertar', function(req, res, next){
-	estudiante.authenticate(req.body.nombre,req.body.apellido,req.body.edad,req.body.cedula,req.body.correo,req.body.carrera,req.body.year,req.body.direcion,req.body.sexo,req.body.indice, function(error,msg){
+	estudiante.insert(req.body.nombre,req.body.apellido,req.body.edad,req.body.cedula,req.body.correo,req.body.carrera,req.body.year,req.body.direccion,req.body.sexo,req.body.indice, function(error,user){
 		if(error)
-		return next(error);
-		else{
-		res.send(msg)}
+			return next(error);
+		else if(user){
+			var err = new Error('cedula ya existente');
+			err.status = 401;
+			next(err);}
+		else
+			res.redirect('/profile');
 	  });
 });
 
@@ -61,7 +57,7 @@ router.post('/actualizar', function(req, res, next){
 		if(error)
 		return next(error);
 		else{
-		res.send(msg)}
+		res.send(msg);}
 	  });
 });
 

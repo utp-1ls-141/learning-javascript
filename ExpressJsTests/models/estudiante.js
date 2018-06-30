@@ -5,52 +5,37 @@ const mongoose = require('mongoose');
  var estudianteSchema = new mongoose.Schema({
     nombre: { type: String, unique: true, required: true, trim: true },
     apellido: { type: String, unique: false, required: true, trim: true },
-    edad: { type: String, unique: false, required: true, trim: true },
+    edad: { type: Number, unique: false, required: true, trim: true },
     cedula: { type: String, unique: false, required: true, trim: true },
     correo: { type: String, unique: false, required: true, trim: true },
     carrera: { type: String, unique: false, required: true, trim: true },
     year: { type: String, unique: false, required: true, trim: true },
     direccion: { type: String, unique: false, required: true, trim: true },
     sexo: { type: String, unique: false, required: true, trim: true },
-    indice: { type: String, unique: false, required: true, trim: true },
+    indice: { type: Number, unique: false, required: true, trim: true },
 },{collection:'estudiantes'});
 
-estudianteSchema.statics.find = function(cedula,callback){
-    Estudiante.findOne({cedula:cedula},'cedula',function(err,users){
-        if(err){
-            console.log(err);
-        }
-        else if(!users){
-            var err = new Error('No existe la cedula');
-            err.status = 401;
+
+estudianteSchema.statics.findAll = function(callback){
+    Estudiante.find({},function(err,users) {
+        if(err)
             return callback(err);
-        }
-        else{
-            console.log(users);
-            return callback(null,users);
-        }
-    })   
+        else if(!users)
+            return callback();
+        return callback(null,users);
+    })
 }
-
-estudianteSchema.statics.findAll = function(){
-    Estudiante.find({});  
-}
-
 
 estudianteSchema.statics.insert = function(nombre,apellido,edad,cedula,correo,carrera,year,direccion,sexo,indice,callback){
-    Estudiante.findOne({cedula:cedula},'cedula',function(err,msg){
+    Estudiante.findOne({cedula:cedula},'cedula',function(err,user){
         if(err){
-            console.log(err);
+            return callback(err)
         }
-        else if(users){
-            var err = new Error('esta cedula ya existe en la base de datos');
-            err.status = 401;
-            return callback(err);
+        else if(user){
+            return callback(user);
         }
         else{
-            console.log(users);
-
-            Estudiante.insertOne({
+            var data={
                 nombre:nombre,
                 apellido:apellido,
                 edad:edad,
@@ -60,19 +45,15 @@ estudianteSchema.statics.insert = function(nombre,apellido,edad,cedula,correo,ca
                 year:year,
                 direccion:direccion,
                 sexo:sexo,
-                indice:indice
-
-            });
-
-            return callback(null,"Estudiante insertado");
-            
-
-            
-
-        }
+                indice:indice};
+            Estudiante.create(data,function(err,est){
+                if(err)
+                    return callback(err);
+                return callback();
+            })}
     })   
 }
-estudianteSchema.statics.update = function(nombre,apellido,edad,cedula,correo,carrera,year,direccion,sexo,indice,callback){
+estudianteSchema.statics.update = function(nombre,apellido,edad,cedula,correo,year,direccion,sexo,indice,callback){
     Estudiante.findOne({cedula:cedula},'cedula',function(err,users){
         if(err){
             console.log(err);

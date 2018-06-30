@@ -37,11 +37,11 @@ app.use(session({
 // Routes
 let routes = require('./routes/router');
 app.use('/',routes);
-/* app.use(function(req,res,next){
+app.use(function(req,res,next){
 	let err = new Error('Archivo no encontrado');
 	err.status=404;
 	next(err);
-}); */
+});
 
 // Open listening port
 // Set PORT:
