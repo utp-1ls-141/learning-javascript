@@ -41,7 +41,7 @@ router.get('/profile',function(req, res, next){
 router.post('/insertar', function(req, res, next){
 	estudiante.insert(req.body.nombre,req.body.apellido,req.body.edad,req.body.cedula,req.body.correo,req.body.carrera,req.body.year,req.body.direccion,req.body.sexo,req.body.indice, function(error,user){
 		if(error)
-			return next(error);
+			next(error);
 		else if(user){
 			var err = new Error('cedula ya existente');
 			err.status = 401;
@@ -65,9 +65,15 @@ router.post('/actualizar', function(req, res, next){
 router.post('/eliminar', function(req, res, next){
 	estudiante.delete(req.body.cedula, function(error,msg){
 		if(error)
-		return next(error);
+			next(error);
+		else if(msg){
+			var err = new Error('cedula no existe');
+			err.status = 401;
+			next(err);
+		}
 		else{
-		res.send(msg)}
+			console.log('exito');
+			res.redirect('/profile');}
 	  });
 });
 

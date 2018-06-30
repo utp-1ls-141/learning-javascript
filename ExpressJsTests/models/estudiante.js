@@ -90,31 +90,19 @@ estudianteSchema.statics.update = function(nombre,apellido,edad,cedula,correo,ye
     })   
 }
 
-estudianteSchema.statics.delete = function(nombre,apellido,edad,cedula,correo,carrera,year,direccion,sexo,indice,callback){
+estudianteSchema.statics.delete = function(cedula,callback){
     Estudiante.findOne({cedula:cedula},'cedula',function(err,users){
-        if(err){
-            console.log(err);
-        }
-        else if(!users){
-            var err = new Error('esta cedula no existe en la base de datos');
-            err.status = 401;
+        if(err)
             return callback(err);
-        }
-        else{
-            console.log(users);
-
-            Estudiante.deleteOne(
-                {cedula:cedula}
-                );
-
-            return callback(null,users);
-
-
-
-        }
+        else if(!users)
+            return callback(null,'cedula no existe');
+        Estudiante.remove({cedula:cedula}, function(err){
+                if(err)
+                    return callback(err);
+                return callback();//Success
+            });
     })   
 }
-
 
 let Estudiante = mongoose.model('Estudiante',estudianteSchema);
 
