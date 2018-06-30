@@ -46,7 +46,7 @@ estudianteSchema.statics.insert = function(nombre,apellido,edad,cedula,correo,ca
                 direccion:direccion,
                 sexo:sexo,
                 indice:indice};
-            Estudiante.create(data,function(err,est){
+            Estudiante.create(data,function(err){
                 if(err)
                     return callback(err);
                 return callback();
@@ -96,7 +96,7 @@ estudianteSchema.statics.delete = function(cedula,callback){
             return callback(err);
         else if(!users)
             return callback(null,'cedula no existe');
-        Estudiante.remove({cedula:cedula}, function(err){
+        Estudiante.deleteOne({cedula:cedula}, function(err){
                 if(err)
                     return callback(err);
                 return callback();//Success

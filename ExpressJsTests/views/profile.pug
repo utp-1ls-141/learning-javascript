@@ -60,7 +60,7 @@ block contenido
                                 td
                                     input#carrera(type='text' name='carrera')
                                 td
-                                    input#year(type='number' name='year')       
+                                    input#year(type='number' name='year' min=1, max=5)       
                                 td
                                     textarea#direccion(name="direccion", cols="30", rows="10")
                                 td
@@ -69,7 +69,7 @@ block contenido
                                         option(value="mujer") Mujer
                                         option(value="NI") No identificado
                                 td
-                                    input#indice(type='number' name='indice')
+                                    input#indice(type='number' name='indice' step='.01' min=0 max=3)
                                 td(colspan='2' style='text-align:center')
                                     input.btn.btn-primary(type='submit' value='Insertar') 
                                 
