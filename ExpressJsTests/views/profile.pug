@@ -1,18 +1,18 @@
-extends base
+extends newBase
 
 block contenido
     .container
         .row
-            .col-sm-12
+            .col
                  h3 Bienvenido, #{usuario} !
         .row
-            .col-sm-7
+            .col
                 h2 Lista de los estudiantes registrados 
         .row
-            .col-sm-12
-                 table.table.table-bordered
+            .col
+                 table.table.table-bordered.table-hover.table-responsive
                     thead.thead-dark
-                        tr 
+                        tr
                             th Nombre 
                             th Apellido 
                             th Edad 
