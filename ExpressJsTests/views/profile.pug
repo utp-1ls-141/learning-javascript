@@ -13,6 +13,7 @@ block contenido
                  table.table.table-bordered.table-hover.table-responsive
                     thead.thead-dark
                         tr
+                            th #
                             th Nombre 
                             th Apellido 
                             th Edad 
@@ -27,18 +28,33 @@ block contenido
                             th 
         
                         tr 
+                            -var number = 0;
                             each lista in modelo
-                                form(action='/actualizar' method='POST')  
+                                form(action='/actualizar', method='POST')
+                                    td #{number+1}  
                                     td #{lista.nombre}
+                                        input#nombre(type='text' name='nombre')
                                     td #{lista.apellido}
+                                        input#apellido(type='text' name='apellido')
                                     td #{lista.edad}
+                                        input#edad(type='number' name='edad')
                                     td #{lista.cedula}
+                                        input#cedula(type='hidden' name='cedula' value=lista.cedula)
                                     td #{lista.correo}
+                                        input#correo(type='email' name='correo')
                                     td #{lista.carrera}
+                                        input#carrera(type='text' name='carrera')
                                     td #{lista.year}
+                                        input#year(type='number' name='year' min=1, max=5)
                                     td #{lista.direccion}
+                                        textarea#direccion(name="direccion", cols="30", rows="10")
                                     td #{lista.sexo}
+                                        select#sexo(name="sexo")
+                                            option(value="hombre") Hombre
+                                            option(value="mujer") Mujer
+                                            option(value="NI") No identificado
                                     td #{lista.indice}
+                                        input#indice(type='number' name='indice' step='.01' min=0 max=3)
                                     td 
                                         input(type='submit',value='Actualizar').btn.btn-success
                                 form(action='/eliminar', method='POST')
@@ -47,6 +63,7 @@ block contenido
                                         input(type='submit',value='Borrar').btn.btn-danger
                         tr 
                             form(method='POST', action='/insertar')
+                                td Nuevo
                                 td
                                     input#nombre(type='text' name='nombre')
                                 td

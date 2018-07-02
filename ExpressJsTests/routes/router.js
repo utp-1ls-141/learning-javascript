@@ -54,10 +54,15 @@ router.post('/insertar', function(req, res, next){
 //ACTUALIZAR
 router.post('/actualizar', function(req, res, next){
 	estudiante.update(req.body.nombre,req.body.apellido,req.body.edad,req.body.cedula,req.body.correo,req.body.carrera,req.body.year,req.body.direcion,req.body.sexo,req.body.indice, function(error,msg){
+		console.log(req.body.cedula);
 		if(error)
-		return next(error);
-		else{
-		res.send(msg);}
+			next(error);
+		else if(!msg){
+			var err = new Error('Usuario no existe');
+			err.status = 401;
+			next (err);}
+		res.redirect('/profile');
+		
 	  });
 });
 
