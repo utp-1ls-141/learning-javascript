@@ -1,3 +1,4 @@
+"use strict";
 let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
@@ -13,17 +14,6 @@ let db = mongoose.connection;
 db.on('error',console.error.bind(console,'Error de Conexion: '));
 db.once('open',() => {
 	console.log('Connected to Mongo Database');
-});
-
-
-let mongoose = require('mongoose');
-
-// Mongoose Connection
-mongoose.connect('mongodb://localhost/semestral');
-let db = mongoose.connection;
-db.on('error', console.error.bind(console, 'Error de conexión: '))
-db.once('open', () => {
-	console.log('Conectado a la Base de Datos.');
 });
 
 // Setting View Engine
@@ -47,11 +37,11 @@ app.use(session({
 // Routes
 let routes = require('./routes/router');
 app.use('/',routes);
-/* app.use(function(req,res,next){
+app.use(function(req,res,next){
 	let err = new Error('Archivo no encontrado');
 	err.status=404;
 	next(err);
-}); */
+});
 
 // Open listening port
 // Set PORT:

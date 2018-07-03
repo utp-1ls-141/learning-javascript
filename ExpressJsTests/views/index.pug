@@ -1,15 +1,124 @@
-extends base
+//- extends base
 
-block contenido
-  form.row(method='post' style='margin-top:20%;')
-    .col-md-11.offset-md-1
-      .form-group.row
-        label.col-sm-3.col-form-label(for="email") Usuario:
-        .col-md-8
-          input.form-control#username(type='email', name='email')
-      .form-group.row
-        label.col-sm-3.col-form-label(for="password") Contraseña:
-        .col-md-8
-          input.form-control#password(type='password',name='password')
-      .form-group.row
-        input(type='submit').btn.btn-primary 
+//- block contenido
+//-   form.row(method='post' style='margin-top:20%;')
+//-     .col-md-11.offset-md-1
+//-       .form-group.row
+//-         label.col-sm-3.col-form-label(for="email") Correo Electronico:
+//-         .col-md-8
+//-           input.form-control#username(type='email', name='email')
+//-       .form-group.row
+//-         label.col-sm-3.col-form-label(for="password") Contraseña:
+//-         .col-md-8
+//-           input.form-control#password(type='password',name='password')
+//-       .form-group.row
+//-         input(type='submit').btn.btn-primary 
+
+doctype html
+html(lang='es')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    |     
+    link(rel='shortcut icon', href='ae.png')
+    |     
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    |     
+    title Iniciar Sesi&oacute;n
+    // Bootstrap core CSS
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4', crossorigin='anonymous')
+    |     
+    style.
+      :root {
+      --input-padding-x: .75rem;
+      --input-padding-y: .75rem;
+      }
+      html, body {
+      height: 100%;
+      }
+      body {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: center;
+      align-items: center;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      background-color: #ffffff;
+      }
+      .form-signin {
+      width: 100%;
+      max-width: 420px;
+      padding: 15px;
+      margin: auto;
+      background-color: #ffffff;
+      }
+      .form-label-group {
+      position: relative;
+      margin-bottom: 1rem;
+      }
+      .form-label-group > input,
+      .form-label-group > label {
+      padding: var(--input-padding-y) var(--input-padding-x);
+      }
+      .form-label-group > label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      margin-bottom: 0; /* Override default `<label>` margin */
+      line-height: 1.5;
+      color: #495057;
+      border: 1px solid transparent;
+      border-radius: .25rem;
+      transition: all .1s ease-in-out;
+      }
+      .form-label-group input::-webkit-input-placeholder {
+      color: transparent;
+      }
+      .form-label-group input:-ms-input-placeholder {
+      color: transparent;
+      }
+      .form-label-group input::-ms-input-placeholder {
+      color: transparent;
+      }
+      .form-label-group input::-moz-placeholder {
+      color: transparent;
+      }
+      .form-label-group input::placeholder {
+      color: transparent;
+      }
+      .form-label-group input:not(:placeholder-shown) {
+      padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+      padding-bottom: calc(var(--input-padding-y) / 3);
+      }
+      .form-label-group input:not(:placeholder-shown) ~ label {
+      padding-top: calc(var(--input-padding-y) / 3);
+      padding-bottom: calc(var(--input-padding-y) / 3);
+      font-size: 12px;
+      color: #777;
+      }
+  |   
+  body
+    form.form-signin.border.rounded(method='post')
+      .text-center.mb-5
+        h1.h3.mb-3.font-weight-normal Iniciar sesi&oacute;n
+      |       
+      .form-label-group
+        input#inputEmail.form-control(type='email', required='', name='email', autofocus='')
+        |         
+        label(for='inputEmail') Correo
+      |       
+      .form-label-group
+        input#inputPassword.form-control(type='password', name='password' , required='')
+        |         
+        label(for='inputPassword') Contrase&ntilde;a
+      |       
+      button.btn.btn-lg.btn-primary.btn-block(type='submit') Iniciar sesi&oacute;n
+      br
+    // Optional JavaScript
+    // jQuery first, then Popper.js, then Bootstrap JS
+    script(src='./statics/bootstrap/js/bootstrap.min.js')
+    |     
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', integrity='sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ', crossorigin='anonymous')
+    |     
+    script(src='./statics/jquery/jquery-3.3.1.min.js')
